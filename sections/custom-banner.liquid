@@ -1,0 +1,78 @@
+<div
+  class="custom-banner"
+  style="{% if section.settings.background_image %}background-image: url('{{section.settings.background_image | image_url: width: 1920 }}'); background-size: cover; background-position: center;{% endif %}"
+>
+  <h2>{{ section.settings.title }}</h2>
+  <p>{{ section.settings.subtitle }}</p>
+  <a href="{{ section.settings.button_link }}">{{ section.settings.button_text }}</a>
+</div>
+
+<style>
+  .custom-banner {
+    background-color: #1a1f37;
+    padding: 60px 20px;
+    text-align: center;
+    }
+    .custom-banner h2 {
+      color: #fabc37;
+      font-size: 2rem;
+    }
+    .custom-banner p {
+      color: #fff;
+      font-size: 1.25rem;
+    }
+    .custom-banner a {
+      color: #1a1f37;
+      background-color: #fabc37;
+      padding: 10px 20px;
+      border-radius: 5px;
+      display: inline-block;
+    }
+  }
+</style>
+{% schema %}
+{
+  "name": "Custom Banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Başlık",
+      "default": "Hoş geldiniz!"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Alt Başlık",
+      "default": "Mağazamıza hoş geldiniz"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Buton Linki"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Buton Yazısı",
+      "default": "Alışverişe Başla"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Arka Plan Görseli"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Metin Rengi",
+      "default": "#fabc37"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Banner"
+    }
+  ]
+}
+{% endschema %}
