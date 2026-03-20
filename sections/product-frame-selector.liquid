@@ -1,0 +1,159 @@
+<div class="product-layout">
+  <div class="product-image">
+    <img
+      src="{{ section.settings.black_frame_image | image_url: width: 800 }}"
+      alt="{{ section.settings.title }}"
+      width="800"
+      height="800"
+      id="frame-image"
+    >
+  </div>
+
+  <div class="product-details">
+    <h1>{{ section.settings.title }}</h1>
+
+    <div class="product-price">
+      <span class="current-price">{{ section.settings.price }}</span>
+      <span class="compare-price">{{ section.settings.compare_price }}</span>
+    </div>
+
+    <div class="frame-options">
+      <p>Frame</p>
+      <button data-frame="black">Black</button>
+      <button data-frame="white">White</button>
+    </div>
+
+    <button class="add-to-cart">Add to Cart</button>
+
+    <div class="product-description">
+      {{ section.settings.description }}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('.frame-options button').forEach((button) => {
+    button.addEventListener('click', function () {
+      document.querySelectorAll('.frame-options button').forEach(function (button) {
+        button.classList.remove('active');
+      });
+      this.classList.add('active');
+      var image = document.getElementById('frame-image');
+      if (this.dataset.frame === 'black') {
+        image.src = '{{ section.settings.black_frame_image | image_url: width: 600 }}';
+      } else {
+        image.src = '{{ section.settings.white_frame_image | image_url: width: 600 }}';
+      }
+    });
+  });
+</script>
+
+<style>
+  .product-layout {
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    gap: 40px;
+  }
+  .product-image {
+    flex: 1;
+  }
+  .product-image img {
+    width: 100%;
+    height: auto;
+  }
+  .product-details {
+    flex: 1;
+  }
+  .product-details h1 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+  }
+
+  .product-price {
+    margin-bottom: 20px;
+  }
+  .current-price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #e74c3c;
+    margin-right: 10px;
+  }
+  .compare-price {
+    font-size: 1.2rem;
+    color: #999;
+    text-decoration: line-through;
+  }
+  .frame-options p {
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  .frame-options button.active {
+    border-color: #000;
+  }
+  .add-to-cart {
+    width: 100%;
+    padding: 16px;
+    background-color: #1a1f37;
+    color: #fff;
+    border: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+    margin: 20px 0;
+  }
+  .add-to-cart:hover {
+    background: #2a2f47;
+  }
+  .product-description {
+    color: #555;
+    line-height: 1.6;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Frame Selector",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Choose Your Frame"
+    },
+    {
+      "type": "image_picker",
+      "id": "black_frame_image",
+      "label": "Black Frame Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "white_frame_image",
+      "label": "White Frame Image"
+    },
+    {
+      "type": "text",
+      "id": "price",
+      "label": "Price",
+      "default": "$39.00"
+    },
+    {
+      "type": "text",
+      "id": "compare_price",
+      "label": "Compare Price",
+      "default": "$298.00"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Product Description",
+      "default": "<p>Premium golf course print with detailed layout.</p>"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Frame Selector"
+    }
+  ]
+}
+{% endschema %}
