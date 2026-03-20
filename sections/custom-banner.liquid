@@ -1,8 +1,16 @@
 <div
   class="custom-banner"
-  style="{% if section.settings.background_image %}background-image: url('{{section.settings.background_image | image_url: width: 1920 }}'); background-size: cover; background-position: center;{% endif %}"
+  style="
+      {% if section.settings.background_image %}
+    background-image: url('{{section.settings.background_image | image_url: width: 1920 }}');
+    background-size: cover;
+    background-position: center;
+    {% endif %}
+  "
 >
-  <h2>{{ section.settings.title }}</h2>
+  <h2 style="color: {{  section.settings.text_color }};">
+    {{ section.settings.title }}
+  </h2>
   <p>{{ section.settings.subtitle }}</p>
   <a href="{{ section.settings.button_link }}">{{ section.settings.button_text }}</a>
 </div>
@@ -12,22 +20,20 @@
     background-color: #1a1f37;
     padding: 60px 20px;
     text-align: center;
-    }
-    .custom-banner h2 {
-      color: #fabc37;
-      font-size: 2rem;
-    }
-    .custom-banner p {
-      color: #fff;
-      font-size: 1.25rem;
-    }
-    .custom-banner a {
-      color: #1a1f37;
-      background-color: #fabc37;
-      padding: 10px 20px;
-      border-radius: 5px;
-      display: inline-block;
-    }
+  }
+  .custom-banner h2 {
+    font-size: 2rem;
+  }
+  .custom-banner p {
+    color: #fff;
+    font-size: 1.25rem;
+  }
+  .custom-banner a {
+    color: #1a1f37;
+    background-color: #fabc37;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: inline-block;
   }
 </style>
 {% schema %}
